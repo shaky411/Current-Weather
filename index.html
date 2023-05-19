@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/c835f09f38.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Nunito:wght@300;400&family=Outfit:wght@200;300;400&family=Oxygen:wght@300;400&family=Phudu&family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bruno+Ace&family=Space+Mono&family=Ysabeau&display=swap"
+        rel="stylesheet">
+    <title>Current Weather</title>
+</head>
+
+<body class="bg-slate-200">
+
+    <div class="flex flex-col items-center justify-center bg-slate-900 min-h-screen space-y-10">
+        <i class="fa-solid fa-cloud-sun-rain text-8xl text-slate-200"></i>
+
+        <h1 id="cityTitle" class="font-bebas text-slate-100 text-5xl md:text-8xl"></h1>
+
+        <div class="flex space-x-2">
+            <input id="city-input" class="py-2 px-4 rounded shadow-inner" type="text" placeholder="enter city">
+            <button id="search"
+                class="py-2 px-4 bg-indigo-600 hover:bg-indigo-900 text-slate-100 rounded shadow hover:shadow-lg">Search</button>
+        </div>
+
+        <div id="weather-container" class="text-slate-100 text-3xl flex flex-col items-center justify-center space-y-4">
+            <h2 id="test" class="md:text-2xl text-xl"></h2>
+        </div>
+
+        <div id="item-container" class="hidden grid md:grid-cols-4 grid-cols-2 gap-5">
+            <div class="flex flex-col justify-center items-center space-y-6 bg-slate-700 hover:bg-slate-800 p-6 border border-slate-500 rounded">
+                <i class="fa-solid fa-temperature-low text-4xl text-slate-300"></i>
+                <h2 id="temp" class="text-slate-100 text-2xl"></h2>
+            </div>
+
+            <div class="flex flex-col justify-center items-center space-y-6 bg-slate-700 hover:bg-slate-800 p-6 border border-slate-500 rounded">
+                <i class="fa-solid fa-wind text-4xl text-slate-300"></i>
+                <h2 id="wind" class="text-slate-100 text-2xl"></h2>
+            </div>
+
+            <div class="flex flex-col justify-center items-center space-y-6 bg-slate-700 hover:bg-slate-800 p-6 border border-slate-500 rounded">
+                <i class="fa-regular fa-compass text-4xl text-jewel-500"></i>
+                <h2 id="direction" class="text-slate-100 text-2xl"></h2>
+            </div>
+
+            <div class="flex flex-col justify-center items-center space-y-6 bg-slate-700 hover:bg-slate-800 p-6 border border-slate-500 rounded">
+                <i class="fa-solid fa-umbrella text-4xl text-cyan-300"></i>
+                <h2 id="rain" class="text-slate-100 text-2xl"></h2>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="./drivers.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+<!-- * to run: npm run watch or to build once npm run build -->
