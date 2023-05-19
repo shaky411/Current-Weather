@@ -12,7 +12,7 @@ const spanData = document.getElementById('span-data');
 const subTit = document.getElementById('subTitle');
 const pageTitle = document.getElementById('page-title');
 const dailyContainer = document.getElementById('daily-container');
-
+const loader = document.getElementById('loading');
 
 const weatherImage = document.getElementById('w-image');
 
@@ -28,9 +28,10 @@ Object.defineProperty(String.prototype, 'capitalize', {
   
 
 async function fetchData() {
-
+      
       const response = await fetch(`https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value}&sections=current%2C%20daily&language=en&units=auto&key=${apiKEY}`);
       const data = await response.json();
+      hideLoading()
       // Handle the data returned from the API
       const allData = data;
       console.log(allData)
@@ -81,11 +82,24 @@ async function fetchData() {
     if (cityInput.value === "") {
         alert("please enter a city");
     } else {
+      displayLoading();
         fetchData()
         itemContainer.classList.remove('hidden')
         subTit.classList.remove('hidden')
         pageTitle.classList.add('hidden');
     }
+  }
+
+  function displayLoading() {
+    loader.classList.add("display");
+
+    setTimeout(() => {
+      loader.classList.remove("display");
+    }, 5000)
+  }
+
+  function hideLoading() {
+    loader.classList.remove("display");
   }
 
   function showSummary() {
