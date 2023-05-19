@@ -15,12 +15,13 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bruno+Ace&family=Space+Mono&family=Ysabeau&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="./custom.css">
     <title>Current Weather</title>
 </head>
 
 <body class="bg-slate-200">
 
-    <div class="flex flex-col items-center justify-center bg-slate-900 min-h-screen space-y-10">
+    <div class="flex flex-col items-center justify-center bg-slate-900 min-h-screen space-y-10 p-20">
         <i class="fa-solid fa-cloud-sun-rain text-8xl text-slate-200"></i>
 
         <h1 id="cityTitle" class="font-bebas text-slate-100 text-5xl md:text-8xl"></h1>
@@ -54,6 +55,15 @@
             <div class="flex flex-col justify-center items-center space-y-6 bg-slate-700 hover:bg-slate-800 p-6 border border-slate-500 rounded">
                 <i class="fa-solid fa-umbrella text-4xl text-cyan-300"></i>
                 <h2 id="rain" class="text-slate-100 text-2xl"></h2>
+            </div>
+        </div>
+
+        <h1 class="text-slate-100 text-2xl">7 day summary</h1>
+
+        <div id="daily-container" class="">
+            <div id="daily-data" class="grid grid-cols-2 md:grid-cols-4 gap-5 text-slate-100">
+                
+                
             </div>
         </div>
     </div>

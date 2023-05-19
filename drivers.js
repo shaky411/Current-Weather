@@ -7,6 +7,8 @@ const direction = document.getElementById('direction');
 const rain = document.getElementById('rain');
 const temp = document.getElementById('temp');
 const itemContainer = document.getElementById('item-container');
+const dailyData = document.getElementById('daily-data');
+const spanData = document.getElementById('span-data');
 
 
 const weatherImage = document.getElementById('w-image');
@@ -29,6 +31,28 @@ async function fetchData() {
       // Handle the data returned from the API
       const allData = data;
       console.log(allData)
+      const daily = allData.daily.data
+      console.log(daily)
+
+      let dailyCards = "";
+
+      daily.forEach(element => {
+        let data = element
+        console.log(data)
+        console.log(data.all_day);
+        // console.log(data.day)
+        // console.log(data.weather)
+
+        dailyCards += `<div class="daily-data">
+        <h2 class="day">${data.day}</h2>
+        <span class="summary">${data.all_day.weather}</span>
+        </div>
+        `
+
+      });
+
+      dailyData.innerHTML = dailyCards;
+
       const conditions = data.current.summary;
       const temperature = data.current.temperature;
 
