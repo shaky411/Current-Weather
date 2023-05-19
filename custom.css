@@ -18,3 +18,16 @@
     display: flex;
     flex-direction: column;
 }
+
+#max-temp {
+    color: #FD6F50;
+}
+
+#min-temp {
+    color: #549AF9;
+}
+
+#summary {
+    color: #F1F5F9;
+    font-weight: bold;
+}

@@ -19,10 +19,12 @@
     <title>Current Weather</title>
 </head>
 
-<body class="bg-slate-200">
+<body class="bg-slate-900">
 
-    <div class="flex flex-col items-center justify-center bg-slate-900 min-h-screen space-y-10 p-20">
+    <div class="flex flex-col items-center justify-center  min-h-screen space-y-10 p-20">
         <i class="fa-solid fa-cloud-sun-rain text-8xl text-slate-200"></i>
+
+        <h1 id="page-title" class="text-8xl font-bebas text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">Simple Weather</h1>
 
         <h1 id="cityTitle" class="font-bebas text-slate-100 text-5xl md:text-8xl"></h1>
 
@@ -58,14 +60,18 @@
             </div>
         </div>
 
-        <h1 class="text-slate-100 text-2xl">7 day summary</h1>
+        <button id="subTitle" class="hidden py-2 px-4 bg-indigo-600 hover:bg-indigo-900 text-slate-100 rounded shadow hover:shadow-lg">7 day summary</button>
 
-        <div id="daily-container" class="">
-            <div id="daily-data" class="grid grid-cols-2 md:grid-cols-4 gap-5 text-slate-100">
-                
-                
+        <div id="daily-container" class="hidden">
+            <div id="daily-data" class="grid grid-cols-1 md:grid-cols-4 gap-5 text-slate-100">
+                <!-- 7 day forecast goes here -->
             </div>
         </div>
+
+        <div class="text-slate-600 flex flex-col justify-center items-center">
+        <h2 >Powered by <i class="text-xl fa-brands fa-square-js mb-1"></i></h2>
+        <span class="italic">Designed by Marc Norris</span>
+    </div>
     </div>
 
 

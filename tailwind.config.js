@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'hero-image': "url('/texas.jpg')",
+        'hero-image': "url('/weather-bg.png')",
       },
       fontFamily: {
         nunito: ["Nunito", "sans-serif"],

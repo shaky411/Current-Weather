@@ -9,6 +9,9 @@ const temp = document.getElementById('temp');
 const itemContainer = document.getElementById('item-container');
 const dailyData = document.getElementById('daily-data');
 const spanData = document.getElementById('span-data');
+const subTit = document.getElementById('subTitle');
+const pageTitle = document.getElementById('page-title');
+const dailyContainer = document.getElementById('daily-container');
 
 
 const weatherImage = document.getElementById('w-image');
@@ -36,23 +39,21 @@ async function fetchData() {
 
       let dailyCards = "";
 
+      // 7 day summary
       daily.forEach(element => {
         let data = element
-        console.log(data)
-        console.log(data.all_day);
-        // console.log(data.day)
-        // console.log(data.weather)
+        // console.log(data)
+        // console.log(data.all_day);
 
         dailyCards += `<div class="daily-data">
         <h2 class="day">${data.day}</h2>
-        <span class="summary">${data.all_day.weather}</span>
+        <span id="summary">${data.all_day.weather}</span>
         <div class="temp-data">
-        <span>Min Temp: ${data.all_day.temperature_min}</span>
-        <span>Max Temp: ${data.all_day.temperature_max}</span>
+        <span id="min-temp">Min Temp: ${data.all_day.temperature_min}</span>
+        <span id="max-temp">Max Temp: ${data.all_day.temperature_max}</span>
         </div>
         </div>
         `
-
       });
 
       dailyData.innerHTML = dailyCards;
@@ -64,10 +65,10 @@ async function fetchData() {
 
     const wData = document.getElementById('test');
 
-    wind.innerHTML = `${data.current.wind.speed} km/s`
+    wind.innerHTML = `${data.current.wind.speed} mph`
     direction.innerHTML = `${data.current.wind.dir}`
     rain.innerHTML = `${data.current.precipitation.type}`
-    temp.innerHTML = `${temperature}`
+    temp.innerHTML = `${temperature}℃`
     
 
     title.innerHTML = cityInput.value.capitalize();
@@ -82,10 +83,17 @@ async function fetchData() {
     } else {
         fetchData()
         itemContainer.classList.remove('hidden')
+        subTit.classList.remove('hidden')
+        pageTitle.classList.add('hidden');
     }
   }
 
+  function showSummary() {
+    dailyContainer.classList.toggle('hidden');
+  }
+
   searchBtn.addEventListener('click', validateInput);
+  subTit.addEventListener('click', showSummary );
 
   
 
