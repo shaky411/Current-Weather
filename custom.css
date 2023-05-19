@@ -12,3 +12,9 @@
 .day {
     font-size: 15px;
 }
+
+.temp-data {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}

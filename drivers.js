@@ -46,6 +46,10 @@ async function fetchData() {
         dailyCards += `<div class="daily-data">
         <h2 class="day">${data.day}</h2>
         <span class="summary">${data.all_day.weather}</span>
+        <div class="temp-data">
+        <span>Min Temp: ${data.all_day.temperature_min}</span>
+        <span>Max Temp: ${data.all_day.temperature_max}</span>
+        </div>
         </div>
         `
 
