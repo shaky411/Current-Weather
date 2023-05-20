@@ -93,6 +93,7 @@ function validateInput() {
 
 // Show the loading spinner
 function displayLoading() {
+  loader.classList.remove('hidden');
   loader.classList.add("display");
 
   setTimeout(() => {
@@ -103,6 +104,7 @@ function displayLoading() {
 // Hide the loading spinner
 function hideLoading() {
   loader.classList.remove("display");
+  loader.classList.add('hidden');
 }
 
 // Show the 7 day summary
