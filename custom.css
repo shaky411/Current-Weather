@@ -27,19 +27,6 @@
     flex-direction: column;
 }
 
-#max-temp {
-    color: #FD6F50;
-}
-
-#min-temp {
-    color: #549AF9;
-}
-
-#summary {
-    color: #F1F5F9;
-    font-weight: bold;
-}
-
 #loading {
     margin-top: 25px;
     width: 2rem;
@@ -65,7 +52,3 @@
     }
 }
 
-.icon {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}

@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#max-temp {
+    @apply text-pink-500;
+}
+
+#min-temp {
+    @apply text-cyan-400;
+}
+
+.icon {
+    @apply my-2;
+}
+
+#summary {
+    @apply text-slate-100;
+    @apply font-bold;
+}

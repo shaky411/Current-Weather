@@ -16,6 +16,8 @@ const loader = document.getElementById("loading");
 const titleTemp = document.getElementById("titleTemp");
 const weatherImage = document.getElementById("w-image");
 const iconEl = document.getElementById('icon');
+const titleIcon = document.getElementById('titleIcon');
+const mainLogo = document.getElementById('mainLogo');
 
 const apiKEY = "6wqm0f4vkilufitxhwxlf06d8t39svnfbhbou4gm";
 
@@ -35,7 +37,7 @@ async function fetchData() {
   hideLoading();
   // Handle the data returned from the API
   const allData = data;
-  // console.log(allData);
+  console.log(allData);
   const daily = allData.daily.data;
   console.log(daily);
   
@@ -70,6 +72,11 @@ async function fetchData() {
         `;
   });
 
+
+  let currentIcon = data.current.icon_num;
+  let currentIconSource = "./assets/weather-icons-big/" + currentIcon + ".png";
+  titleIcon.innerHTML = `<img src="${currentIconSource}" alt="weather icon"</img>`
+
   dailyData.innerHTML = dailyCards;
 
   const conditions = data.current.summary;
@@ -98,6 +105,7 @@ function validateInput() {
   } else {
     displayLoading();
     fetchData();
+    mainLogo.classList.add('hidden');
     itemContainer.classList.remove("hidden");
     subTit.classList.remove("hidden");
     pageTitle.classList.add("hidden");
@@ -111,7 +119,7 @@ function displayLoading() {
 
   setTimeout(() => {
     loader.classList.remove("display");
-  }, 5000);
+  }, 7000);
 }
 
 // Hide the loading spinner
