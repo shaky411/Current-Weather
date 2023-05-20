@@ -13,6 +13,7 @@ const subTit = document.getElementById("subTitle");
 const pageTitle = document.getElementById("page-title");
 const dailyContainer = document.getElementById("daily-container");
 const loader = document.getElementById("loading");
+const titleTemp = document.getElementById('titleTemp');
 
 const weatherImage = document.getElementById("w-image");
 
@@ -69,6 +70,7 @@ async function fetchData() {
   direction.innerHTML = `${data.current.wind.dir}`;
   rain.innerHTML = `${data.current.precipitation.type}`;
   temp.innerHTML = `${temperature}℃`;
+  titleTemp.innerHTML = `${temperature}℃`
 
   title.innerHTML = cityInput.value.capitalize();
   wData.innerHTML = `Current conditions: <strong>${conditions}</strong>`;
