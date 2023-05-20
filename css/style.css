@@ -672,16 +672,12 @@ video {
   padding-bottom: 0.5rem;
 }
 
-.pb-40 {
-  padding-bottom: 10rem;
+.pb-10 {
+  padding-bottom: 2.5rem;
 }
 
 .pt-10 {
   padding-top: 2.5rem;
-}
-
-.pb-10 {
-  padding-bottom: 2.5rem;
 }
 
 .text-center {
@@ -798,6 +794,10 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -810,5 +810,15 @@ video {
   .md\:text-8xl {
     font-size: 6rem;
     line-height: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }

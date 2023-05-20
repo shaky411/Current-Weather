@@ -13,7 +13,7 @@ const subTit = document.getElementById("subTitle");
 const pageTitle = document.getElementById("page-title");
 const dailyContainer = document.getElementById("daily-container");
 const loader = document.getElementById("loading");
-const titleTemp = document.getElementById('titleTemp');
+const titleTemp = document.getElementById("titleTemp");
 const weatherImage = document.getElementById("w-image");
 
 const apiKEY = "6wqm0f4vkilufitxhwxlf06d8t39svnfbhbou4gm";
@@ -46,12 +46,23 @@ async function fetchData() {
     // console.log(data)
     // console.log(data.all_day);
 
+    // var options = {
+    //   weekday: "long",
+    //   year: "numeric",
+    //   month: "long",
+    //   day: "numeric",
+    // };
+    // var today = new Date();
+
+    // console.log(today.toLocaleDateString("en-US")); // 9/17/2016
+    // console.log(today.toLocaleDateString("en-US", options)); // Saturday, September 17, 2016
+    // console.log(today.toLocaleDateString("hi-IN", options)); // शनिवार, 17 सितंबर 2016
 
     // Convert Date format
-    let options = {weekday: 'long', month: 'long', day: 'numeric'}
+    let options = { weekday: "long", month: "long", day: "numeric" };
     let today = new Date(data.day);
-    let correctData = today.toLocaleString("en-us", options)
-    console.log(correctData)
+    let correctData = today.toLocaleString("en-us", options);
+    console.log(correctData);
 
     dailyCards += `<div class="daily-data">
         <h2 class="day">${correctData}</h2>
@@ -77,7 +88,7 @@ async function fetchData() {
   direction.innerHTML = `${data.current.wind.dir}`;
   rain.innerHTML = `${data.current.precipitation.type}`;
   temp.innerHTML = `${temperature}℃`;
-  titleTemp.innerHTML = `${temperature}℃`
+  titleTemp.innerHTML = `${temperature}℃`;
 
   title.innerHTML = cityInput.value.capitalize();
   wData.innerHTML = `Current conditions: <strong>${conditions}</strong>`;
@@ -100,7 +111,7 @@ function validateInput() {
 
 // Show the loading spinner
 function displayLoading() {
-  loader.classList.remove('hidden');
+  loader.classList.remove("hidden");
   loader.classList.add("display");
 
   setTimeout(() => {
@@ -111,7 +122,7 @@ function displayLoading() {
 // Hide the loading spinner
 function hideLoading() {
   loader.classList.remove("display");
-  loader.classList.add('hidden');
+  loader.classList.add("hidden");
 }
 
 // Show the 7 day summary
