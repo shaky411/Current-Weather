@@ -12,6 +12,9 @@
 .day {
     font-size: 15px;
     width: 200px;
+    color: #15D370;
+    font-size: 20px;
+    font-family: monospace;
 }
 
 .temp-data {

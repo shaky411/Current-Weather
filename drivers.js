@@ -46,8 +46,15 @@ async function fetchData() {
     // console.log(data)
     // console.log(data.all_day);
 
+
+    // Convert Date format
+    let options = {weekday: 'long', month: 'long', day: 'numeric'}
+    let today = new Date(data.day);
+    let correctData = today.toLocaleString("en-us", options)
+    console.log(correctData)
+
     dailyCards += `<div class="daily-data">
-        <h2 class="day">${data.day}</h2>
+        <h2 class="day">${correctData}</h2>
         <span id="summary">${data.all_day.weather}</span>
         <div class="temp-data">
         <i class="fa-solid fa-temperature-low text-slate-300"></i><span id="min-temp">Min Temp: ${data.all_day.temperature_min}</span>
