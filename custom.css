@@ -9,12 +9,16 @@
     /* max-width: 140.51px; */
 }
 
+.daily-data:hover {
+    background-color: #1E293B;
+}
+
 .day {
     font-size: 15px;
     width: 200px;
-    color: #15D370;
+    color: #F1F5F9;
     font-size: 20px;
-    font-family: monospace;
+    /* font-family: monospace; */
 }
 
 .temp-data {

@@ -42,21 +42,17 @@ async function fetchData() {
 
   let dailyCards = "";
 
-  // 7 day summary
+  // 7 day summary - get the data for each day
   daily.forEach((element) => {
     let data = element;
     // console.log(data)
     // console.log(data.all_day);
 
-    
-    
+    // Get the icon code and add it to the src string from the image assets
     let icon = data.icon;
-    console.log(icon)
     let iconSource = "./assets/weather-icons/" + icon + ".png";
-    console.log(iconSource)
 
-    // iconEl.innerHTML = `<img src="${iconSource}" alt="weather icon"</img>`
-
+    // re-format day data
     let options = { weekday: "long", month: "long", day: "numeric" };
     let today = new Date(data.day);
     let correctData = today.toLocaleString("en-us", options);
