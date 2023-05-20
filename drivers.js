@@ -16,7 +16,7 @@ const loader = document.getElementById("loading");
 const titleTemp = document.getElementById('titleTemp');
 const weatherImage = document.getElementById("w-image");
 
-let KEY = config.APIKEY;
+const apiKEY = "6wqm0f4vkilufitxhwxlf06d8t39svnfbhbou4gm";
 
 Object.defineProperty(String.prototype, "capitalize", {
   value: function () {
@@ -28,7 +28,7 @@ Object.defineProperty(String.prototype, "capitalize", {
 // Fetch data and update the DOM
 async function fetchData() {
   const response = await fetch(
-    `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value.trim()}&sections=current%2C%20daily&language=en&units=auto&key=${KEY}`
+    `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value.trim()}&sections=current%2C%20daily&language=en&units=auto&key=${apiKEY}`
   );
   const data = await response.json();
   hideLoading();
