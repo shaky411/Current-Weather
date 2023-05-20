@@ -14,8 +14,9 @@ const pageTitle = document.getElementById("page-title");
 const dailyContainer = document.getElementById("daily-container");
 const loader = document.getElementById("loading");
 const titleTemp = document.getElementById('titleTemp');
-
 const weatherImage = document.getElementById("w-image");
+
+
 
 const apiKEY = "6wqm0f4vkilufitxhwxlf06d8t39svnfbhbou4gm";
 
@@ -26,6 +27,7 @@ Object.defineProperty(String.prototype, "capitalize", {
   enumerable: false,
 });
 
+// Fetch data and update the DOM
 async function fetchData() {
   const response = await fetch(
     `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value}&sections=current%2C%20daily&language=en&units=auto&key=${apiKEY}`
@@ -78,6 +80,7 @@ async function fetchData() {
   cityInput.value = "";
 }
 
+// Validate input, start loader and fetch data
 function validateInput() {
   if (cityInput.value === "") {
     alert("please enter a city");
@@ -90,6 +93,7 @@ function validateInput() {
   }
 }
 
+// Show the loading spinner
 function displayLoading() {
   loader.classList.add("display");
 
@@ -98,13 +102,16 @@ function displayLoading() {
   }, 5000);
 }
 
+// Hide the loading spinner
 function hideLoading() {
   loader.classList.remove("display");
 }
 
+// Show the 7 day summary
 function showSummary() {
   dailyContainer.classList.toggle("hidden");
 }
 
+// Event listeners
 searchBtn.addEventListener("click", validateInput);
 subTit.addEventListener("click", showSummary);
