@@ -15,6 +15,7 @@ const dailyContainer = document.getElementById("daily-container");
 const loader = document.getElementById("loading");
 const titleTemp = document.getElementById("titleTemp");
 const weatherImage = document.getElementById("w-image");
+const iconEl = document.getElementById('icon');
 
 const apiKEY = "6wqm0f4vkilufitxhwxlf06d8t39svnfbhbou4gm";
 
@@ -34,9 +35,10 @@ async function fetchData() {
   hideLoading();
   // Handle the data returned from the API
   const allData = data;
-  console.log(allData);
+  // console.log(allData);
   const daily = allData.daily.data;
   console.log(daily);
+  
 
   let dailyCards = "";
 
@@ -46,19 +48,15 @@ async function fetchData() {
     // console.log(data)
     // console.log(data.all_day);
 
-    // var options = {
-    //   weekday: "long",
-    //   year: "numeric",
-    //   month: "long",
-    //   day: "numeric",
-    // };
-    // var today = new Date();
+    
+    
+    let icon = data.icon;
+    console.log(icon)
+    let iconSource = "./assets/weather-icons/" + icon + ".png";
+    console.log(iconSource)
 
-    // console.log(today.toLocaleDateString("en-US")); // 9/17/2016
-    // console.log(today.toLocaleDateString("en-US", options)); // Saturday, September 17, 2016
-    // console.log(today.toLocaleDateString("hi-IN", options)); // शनिवार, 17 सितंबर 2016
+    // iconEl.innerHTML = `<img src="${iconSource}" alt="weather icon"</img>`
 
-    // Convert Date format
     let options = { weekday: "long", month: "long", day: "numeric" };
     let today = new Date(data.day);
     let correctData = today.toLocaleString("en-us", options);
@@ -66,6 +64,7 @@ async function fetchData() {
 
     dailyCards += `<div class="daily-data">
         <h2 class="day">${correctData}</h2>
+        <div class="icon"><img src="${iconSource}" alt="weather icon"</img></div>
         <span id="summary">${data.all_day.weather}</span>
         <div class="temp-data">
         <i class="fa-solid fa-temperature-low text-slate-300"></i><span id="min-temp">Min Temp: ${data.all_day.temperature_min}</span>
