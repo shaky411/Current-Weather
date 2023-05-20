@@ -30,7 +30,7 @@ Object.defineProperty(String.prototype, "capitalize", {
 // Fetch data and update the DOM
 async function fetchData() {
   const response = await fetch(
-    `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value}&sections=current%2C%20daily&language=en&units=auto&key=${apiKEY}`
+    `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value.trim()}&sections=current%2C%20daily&language=en&units=auto&key=${apiKEY}`
   );
   const data = await response.json();
   hideLoading();
