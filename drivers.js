@@ -35,6 +35,7 @@ async function fetchData() {
   );
   const data = await response.json();
   hideLoading();
+  mainLogo.classList.add('hidden');
   // Handle the data returned from the API
   const allData = data;
   console.log(allData);
@@ -105,7 +106,7 @@ function validateInput() {
   } else {
     displayLoading();
     fetchData();
-    mainLogo.classList.add('hidden');
+    
     itemContainer.classList.remove("hidden");
     subTit.classList.remove("hidden");
     pageTitle.classList.add("hidden");
