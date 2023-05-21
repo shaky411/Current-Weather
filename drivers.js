@@ -65,8 +65,8 @@ async function fetchData() {
         <div class="icon"><img src="${iconSource}" alt="weather icon"</img></div>
         <span id="summary">${data.all_day.weather}</span>
         <div class="temp-data">
-        <i class="fa-solid fa-temperature-low text-slate-300"></i><span id="min-temp">Min Temp: ${data.all_day.temperature_min}</span>
-        <span id="max-temp">Max Temp: ${data.all_day.temperature_max}</span>
+        <i class="fa-solid fa-temperature-low text-slate-300"></i><span id="min-temp">Min Temp: <strong>${data.all_day.temperature_min}</strong>℃</span>
+        <span id="max-temp">Max Temp: <strong>${data.all_day.temperature_max}</strong>℃</span>
         </div>
         </div>
         `;
