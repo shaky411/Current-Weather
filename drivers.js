@@ -61,7 +61,9 @@ async function fetchData() {
     console.log(correctData);
 
     dailyCards += `<div class="daily-data">
+        <div class="card-date">
         <h2 class="day">${correctData}</h2>
+        </div>
         <div class="icon"><img src="${iconSource}" alt="weather icon"</img></div>
         <span id="summary">${data.all_day.weather}</span>
         <div class="temp-data">
@@ -69,8 +71,12 @@ async function fetchData() {
         <span id="max-temp">Max Temp: <strong>${data.all_day.temperature_max}</strong>℃</span>
         </div>
         <div class="card-wind">
-        <i class="fa-solid fa-wind"></i>
+        <i class="fa-solid fa-wind mt-2"></i>
         <span><strong>${data.all_day.wind.speed}</strong>mph</span>
+        </div>
+        <div>
+        <i class="fa-solid fa-umbrella"></i>
+        <span><strong>${data.all_day.precipitation.type}</strong></span>
         </div>
         </div>
         `;

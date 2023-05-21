@@ -805,6 +805,9 @@ video {
   font-weight: 700;
 }
 
+.card-date {
+}
+
 .hover\:bg-indigo-900:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(49 46 129 / var(--tw-bg-opacity));
