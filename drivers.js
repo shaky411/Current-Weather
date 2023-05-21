@@ -68,6 +68,10 @@ async function fetchData() {
         <i class="fa-solid fa-temperature-low text-slate-300"></i><span id="min-temp">Min Temp: <strong>${data.all_day.temperature_min}</strong>℃</span>
         <span id="max-temp">Max Temp: <strong>${data.all_day.temperature_max}</strong>℃</span>
         </div>
+        <div class="card-wind">
+        <i class="fa-solid fa-wind"></i>
+        <span>${data.all_day.wind.speed}mph</span>
+        </div>
         </div>
         `;
   });
