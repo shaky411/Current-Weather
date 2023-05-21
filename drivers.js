@@ -42,7 +42,6 @@ async function fetchData() {
   const daily = allData.daily.data;
   console.log(daily);
   
-
   let dailyCards = "";
 
   // 7 day summary - get the data for each day
@@ -72,7 +71,6 @@ async function fetchData() {
         </div>
         `;
   });
-
 
   let currentIcon = data.current.icon_num;
   let currentIconSource = "./assets/weather-icons-big/" + currentIcon + ".png";

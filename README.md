@@ -35,7 +35,7 @@ Visit the application here: https://shaky411.github.io/Current-Weather/
 
 ## Credits
 
-N/A
+API provided by: https://www.meteosource.com/
 
 <br>
 
