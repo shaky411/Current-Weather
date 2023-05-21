@@ -70,7 +70,7 @@ async function fetchData() {
         </div>
         <div class="card-wind">
         <i class="fa-solid fa-wind"></i>
-        <span>${data.all_day.wind.speed}mph</span>
+        <span><strong>${data.all_day.wind.speed}</strong>mph</span>
         </div>
         </div>
         `;

@@ -8,6 +8,10 @@ This is a simple to use weather application without all of the clutter that many
 
 This app is built with HTML, JavaScript & styled with TailwindCSS.
 
+Currently, we display the current weather conditions and a 7 day summary for each day.
+
+Future update will include tabs for favourite cities to display the data for your favourite locations, quicker.
+
 <br>
 
 **Table of Contents:**
