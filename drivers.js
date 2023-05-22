@@ -18,6 +18,7 @@ const weatherImage = document.getElementById("w-image");
 const iconEl = document.getElementById('icon');
 const titleIcon = document.getElementById('titleIcon');
 const mainLogo = document.getElementById('mainLogo');
+const tagline = document.getElementById('tagline');
 
 const apiKEY = "6wqm0f4vkilufitxhwxlf06d8t39svnfbhbou4gm";
 
@@ -118,6 +119,7 @@ function validateInput() {
     itemContainer.classList.remove("hidden");
     subTit.classList.remove("hidden");
     pageTitle.classList.add("hidden");
+    tagline.classList.add('hidden');
   }
 }
 
