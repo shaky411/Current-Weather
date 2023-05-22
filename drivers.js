@@ -15,10 +15,12 @@ const dailyContainer = document.getElementById("daily-container");
 const loader = document.getElementById("loading");
 const titleTemp = document.getElementById("titleTemp");
 const weatherImage = document.getElementById("w-image");
-const iconEl = document.getElementById('icon');
-const titleIcon = document.getElementById('titleIcon');
-const mainLogo = document.getElementById('mainLogo');
-const tagline = document.getElementById('tagline');
+const iconEl = document.getElementById("icon");
+const titleIcon = document.getElementById("titleIcon");
+const mainLogo = document.getElementById("mainLogo");
+const tagline = document.getElementById("tagline");
+const high = document.getElementById("dayHigh");
+const low = document.getElementById("dayLow");
 
 const apiKEY = "6wqm0f4vkilufitxhwxlf06d8t39svnfbhbou4gm";
 
@@ -29,39 +31,49 @@ Object.defineProperty(String.prototype, "capitalize", {
   enumerable: false,
 });
 
-// Fetch data and update the DOM
 async function fetchData() {
-  const response = await fetch(
-    `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value.trim()}&sections=current%2C%20daily&language=en&units=auto&key=${apiKEY}`
-  );
-  const data = await response.json();
-  hideLoading();
-  mainLogo.classList.add('hidden');
-  // Handle the data returned from the API
-  const allData = data;
-  console.log(allData);
-  const daily = allData.daily.data;
-  console.log(daily);
-  
-  let dailyCards = "";
+  try {
+    const response = await fetch(
+      `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value.trim()}&sections=current%2C%20daily&language=en&units=auto&key=${apiKEY}`
+    );
 
-  // 7 day summary - get the data for each day
-  daily.forEach((element) => {
-    let data = element;
-    // console.log(data)
-    // console.log(data.all_day);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-    // Get the icon code and add it to the src string from the image assets
-    let icon = data.icon;
-    let iconSource = "./assets/weather-icons/" + icon + ".png";
+    const data = await response.json();
+    hideLoading();
+    mainLogo.classList.add("hidden");
 
-    // re-format day data
-    let options = { weekday: "long", month: "long", day: "numeric" };
-    let today = new Date(data.day);
-    let correctData = today.toLocaleString("en-us", options);
-    console.log(correctData);
+    // Handle the data returned from the API
+    const allData = data;
+    console.log(allData);
+    const daily = allData.daily.data;
+    console.log(daily);
 
-    dailyCards += `<div class="daily-data">
+    // Rest of the code...
+    let dailyCards = "";
+
+    high.innerHTML = `H:<strong>${daily[0].all_day.temperature_max}℃</strong>`;
+    low.innerHTML = `L:<strong>${daily[0].all_day.temperature_min}℃</strong>`;
+
+    // 7 day summary - get the data for each day
+    daily.forEach((element) => {
+      let data = element;
+      // console.log(data)
+      // console.log(data.all_day);
+
+      // Get the icon code and add it to the src string from the image assets
+      let icon = data.icon;
+      let iconSource = "./assets/weather-icons/" + icon + ".png";
+
+      // re-format day data
+      let options = { weekday: "long", month: "long", day: "numeric" };
+      let today = new Date(data.day);
+      let correctData = today.toLocaleString("en-us", options);
+      console.log(correctData);
+
+      dailyCards += `<div class="daily-data">
         <div class="card-date">
         <h2 class="day">${correctData}</h2>
         </div>
@@ -81,31 +93,37 @@ async function fetchData() {
         </div>
         </div>
         `;
-  });
+    });
 
-  let currentIcon = data.current.icon_num;
-  let currentIconSource = "./assets/weather-icons-big/" + currentIcon + ".png";
-  titleIcon.innerHTML = `<img src="${currentIconSource}" alt="weather icon"</img>`
+    let currentIcon = data.current.icon_num;
+    let currentIconSource =
+      "./assets/weather-icons-big/" + currentIcon + ".png";
+    titleIcon.innerHTML = `<img src="${currentIconSource}" alt="weather icon"</img>`;
 
-  dailyData.innerHTML = dailyCards;
+    dailyData.innerHTML = dailyCards;
 
-  const conditions = data.current.summary;
-  const temperature = data.current.temperature;
+    const conditions = data.current.summary;
+    const temperature = data.current.temperature;
 
-  console.log(data.current);
+    console.log(data.current);
 
-  const wData = document.getElementById("test");
+    const wData = document.getElementById("test");
 
-  wind.innerHTML = `${data.current.wind.speed} mph`;
-  direction.innerHTML = `${data.current.wind.dir}`;
-  rain.innerHTML = `${data.current.precipitation.type}`;
-  temp.innerHTML = `${temperature}℃`;
-  titleTemp.innerHTML = `${temperature}℃`;
+    wind.innerHTML = `${data.current.wind.speed} mph`;
+    direction.innerHTML = `${data.current.wind.dir}`;
+    rain.innerHTML = `${data.current.precipitation.type}`;
+    temp.innerHTML = `${temperature}℃`;
+    titleTemp.innerHTML = `${temperature}℃`;
 
-  title.innerHTML = cityInput.value.capitalize();
-  wData.innerHTML = `Current conditions: <strong>${conditions}</strong>`;
+    title.innerHTML = cityInput.value.capitalize();
+    wData.innerHTML = `Current conditions: <strong>${conditions}</strong>`;
 
-  cityInput.value = "";
+    cityInput.value = "";
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    alert("Network Error!");
+    // You can handle the error here, e.g., display an error message to the user.
+  }
 }
 
 // Validate input, start loader and fetch data
@@ -115,11 +133,11 @@ function validateInput() {
   } else {
     displayLoading();
     fetchData();
-    
+
     itemContainer.classList.remove("hidden");
     subTit.classList.remove("hidden");
     pageTitle.classList.add("hidden");
-    tagline.classList.add('hidden');
+    tagline.classList.add("hidden");
   }
 }
 

@@ -22,3 +22,7 @@
 .card-date {
     
 }
+
+#dayHigh {
+    @apply mr-1;
+}
