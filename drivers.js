@@ -21,6 +21,7 @@ const mainLogo = document.getElementById("mainLogo");
 const tagline = document.getElementById("tagline");
 const high = document.getElementById("dayHigh");
 const low = document.getElementById("dayLow");
+const highLowContainer = document.getElementById('day-high-low');
 
 const apiKEY = "6wqm0f4vkilufitxhwxlf06d8t39svnfbhbou4gm";
 
@@ -54,6 +55,7 @@ async function fetchData() {
     // Rest of the code...
     let dailyCards = "";
 
+    // High-Low temperature for the current day
     high.innerHTML = `H:<strong>${daily[0].all_day.temperature_max}℃</strong>`;
     low.innerHTML = `L:<strong>${daily[0].all_day.temperature_min}℃</strong>`;
 
@@ -136,6 +138,7 @@ function validateInput() {
 
     itemContainer.classList.remove("hidden");
     subTit.classList.remove("hidden");
+    highLowContainer.classList.remove('hidden');
     pageTitle.classList.add("hidden");
     tagline.classList.add("hidden");
   }
