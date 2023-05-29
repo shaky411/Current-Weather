@@ -815,7 +815,7 @@ video {
 
 #max-temp {
   --tw-text-opacity: 1;
-  color: rgb(236 72 153 / var(--tw-text-opacity));
+  color: rgb(244 63 94 / var(--tw-text-opacity));
 }
 
 #min-temp {
