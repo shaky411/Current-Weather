@@ -35,7 +35,7 @@ Object.defineProperty(String.prototype, "capitalize", {
 async function fetchData() {
   try {
     const response = await fetch(
-      `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value.trim()}&sections=current%2C%20daily&language=en&units=auto&key=${apiKEY}`
+      `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value.trim()}&sections=current%2C%20daily&language=en&units=metric&key=${apiKEY}`
     );
 
     if (!response.ok) {
@@ -123,7 +123,7 @@ async function fetchData() {
     cityInput.value = "";
   } catch (error) {
     console.error("Error fetching data:", error);
-    alert("Network Error!");
+    showErrorModal();
     // You can handle the error here, e.g., display an error message to the user.
   }
 }
@@ -179,7 +179,22 @@ function hideModal() {
   modalContent.classList.add('hidden')
 }
 
+const errorModalBg = document.getElementById('error-modal-bg');
+const errorModalContent = document.getElementById('error-modal-content');
+const closeErrorModal = document.getElementById('close-error-modal');
+
+function showErrorModal() {
+  errorModalBg.classList.remove('hidden')
+  errorModalContent.classList.remove('hidden')
+}
+
+function hideErrorModal() {
+  errorModalBg.classList.add('hidden')
+  errorModalContent.classList.add('hidden')
+}
+
 // Event listeners
 searchBtn.addEventListener("click", validateInput);
 subTit.addEventListener("click", showSummary);
 closeModal.addEventListener('click', hideModal);
+closeErrorModal.addEventListener('click', hideErrorModal);
