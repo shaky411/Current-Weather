@@ -15,8 +15,7 @@
 }
 
 #summary {
-    @apply text-slate-100;
-    @apply font-bold;
+    @apply text-slate-100 font-bold;
 }
 
 .card-date {

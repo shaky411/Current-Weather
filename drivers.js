@@ -131,7 +131,7 @@ async function fetchData() {
 // Validate input, start loader and fetch data
 function validateInput() {
   if (cityInput.value === "") {
-    alert("please enter a city");
+    showModal();
   } else {
     displayLoading();
     fetchData();
@@ -165,6 +165,21 @@ function showSummary() {
   dailyContainer.classList.toggle("hidden");
 }
 
+const modalBg = document.getElementById('modal-bg');
+const modalContent = document.getElementById('modal-content');
+const closeModal = document.getElementById('close-modal');
+
+function showModal() {
+  modalBg.classList.remove('hidden')
+  modalContent.classList.remove('hidden')
+}
+
+function hideModal() {
+  modalBg.classList.add('hidden')
+  modalContent.classList.add('hidden')
+}
+
 // Event listeners
 searchBtn.addEventListener("click", validateInput);
 subTit.addEventListener("click", showSummary);
+closeModal.addEventListener('click', hideModal);
