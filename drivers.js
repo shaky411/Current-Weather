@@ -133,7 +133,7 @@ async function fetchData() {
 // Validate input, start loader and fetch data
 function validateInput() {
   if (cityInput.value === "") {
-    showModal();
+    openModal();
   } else {
     displayLoading();
     fetchData();
@@ -210,7 +210,7 @@ closeErrorModal.addEventListener('click', hideErrorModal);
 const modal = document.querySelector('.main-modal');
     const closeButton = document.querySelectorAll('.modal-close');
 
-    const modalClose = () => {
+    function modalClose() {
         modal.classList.remove('fadeIn');
         modal.classList.add('fadeOut');
         setTimeout(() => {
@@ -218,7 +218,7 @@ const modal = document.querySelector('.main-modal');
         }, 500);
     }
 
-    const openModal = () => {
+    function openModal() {
         modal.classList.remove('fadeOut');
         modal.classList.add('fadeIn');
         modal.style.display = 'flex';
