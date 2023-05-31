@@ -21,6 +21,35 @@
 
 <body class="bg-slate-900">
 
+<div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
+    style="background: rgba(0,0,0,.7);">
+    <div
+        class="border shadow-lg modal-container bg-white w-11/12 max-w-md mx-auto rounded-lg z-50 overflow-y-auto">
+        <div class="modal-content py-4 text-left px-6">
+            <!--Title-->
+            <div class="flex justify-start items-center">
+                <div
+                                    class="flex items-center justify-center rounded-full bg-red-100 p-1 sm:mx-0 sm:h-10 sm:w-10">
+                                    <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                    </svg>
+                                </div>
+                <p class="text-lg font-semibold ml-2">Please enter a city</p>
+            </div>
+            <!--Body-->
+            <div class="my-5">
+                <p class="text-slate-500">Please enter a city name to see weather information.</p>
+            </div>
+            <!--Footer-->
+            <div class="flex justify-end pt-2">
+                <button
+                    class="focus:outline-none border shadow border-slate-400 modal-close px-4 bg-slate-300 py-2 rounded-lg text-slate-800 hover:bg-slate-800 hover:text-slate-200 duration-300">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
     <div class="flex flex-col items-center justify-start min-h-screen pb-10 px-10 pt-10">
 
@@ -81,7 +110,7 @@
             </div>
         </div>
 
-        <!-- Enter city name modal -->
+        <!-- Network Error modal -->
         <div id="error-modal-bg" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog"
             aria-modal="true">
             <!--
@@ -222,7 +251,7 @@
         </div>
     </div>
 
-    <script src="./drivers.js"></script>
+    <script src="./drivers.js"></>
 </body>
 
 </html>

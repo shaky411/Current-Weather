@@ -35,7 +35,7 @@ Object.defineProperty(String.prototype, "capitalize", {
 async function fetchData() {
   try {
     const response = await fetch(
-      `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value.trim()}&sections=current%2C%20daily&language=en&units=metric&key=${apiKEY}`
+      `https://www.meteosource.com/api/v1/free/point?place_id=${cityInput.value.trim()}&sections=all%2C%20daily&language=en&units=metric&key=${apiKEY}`
     );
 
     if (!response.ok) {
@@ -54,6 +54,7 @@ async function fetchData() {
 
     // Rest of the code...
     let dailyCards = "";
+    let dailyModal = "";
 
     // High-Low temperature for the current day
     high.innerHTML = `H:<strong>${daily[0].all_day.temperature_max}℃</strong>`;
@@ -95,6 +96,7 @@ async function fetchData() {
         </div>
         </div>
         `;
+
     });
 
     let currentIcon = data.current.icon_num;
@@ -131,7 +133,7 @@ async function fetchData() {
 // Validate input, start loader and fetch data
 function validateInput() {
   if (cityInput.value === "") {
-    showModal();
+    openModal();
   } else {
     displayLoading();
     fetchData();
@@ -182,6 +184,9 @@ function hideModal() {
 const errorModalBg = document.getElementById('error-modal-bg');
 const errorModalContent = document.getElementById('error-modal-content');
 const closeErrorModal = document.getElementById('close-error-modal');
+const infoModalBtn = document.getElementById('info-modal');
+const infoModalBg = document.getElementById('info-modal-bg');
+const infoModalContent = document.getElementById('info-modal-content');
 
 function showErrorModal() {
   errorModalBg.classList.remove('hidden')
@@ -198,3 +203,36 @@ searchBtn.addEventListener("click", validateInput);
 subTit.addEventListener("click", showSummary);
 closeModal.addEventListener('click', hideModal);
 closeErrorModal.addEventListener('click', hideErrorModal);
+
+
+
+
+const modal = document.querySelector('.main-modal');
+    const closeButton = document.querySelectorAll('.modal-close');
+
+    const modalClose = () => {
+        modal.classList.remove('fadeIn');
+        modal.classList.add('fadeOut');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 500);
+    }
+
+    const openModal = () => {
+        modal.classList.remove('fadeOut');
+        modal.classList.add('fadeIn');
+        modal.style.display = 'flex';
+    }
+
+    for (let i = 0; i < closeButton.length; i++) {
+
+        const elements = closeButton[i];
+
+        elements.onclick = (e) => modalClose();
+
+        modal.style.display = 'none';
+
+        window.onclick = function (event) {
+            if (event.target == modal) modalClose();
+        }
+    }
