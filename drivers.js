@@ -133,7 +133,7 @@ async function fetchData() {
 // Validate input, start loader and fetch data
 function validateInput() {
   if (cityInput.value === "") {
-    openModal();
+    showModal();
   } else {
     displayLoading();
     fetchData();
