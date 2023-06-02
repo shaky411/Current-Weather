@@ -208,7 +208,7 @@ closeErrorModal.addEventListener('click', hideErrorModal);
 
 
 const modal = document.querySelector('.main-modal');
-    const closeButton = document.querySelectorAll('.modal-close');
+const closeButton = document.querySelectorAll('.modal-close');
 
     function modalClose() {
         modal.classList.remove('fadeIn');
@@ -236,3 +236,39 @@ const modal = document.querySelector('.main-modal');
             if (event.target == modal) modalClose();
         }
     }
+
+
+    // About Modal
+
+const aboutModal = document.querySelector(".about-modal");
+const aboutCloseButton = document.querySelectorAll(".about-modal-close");
+
+function aboutModalClose() {
+  aboutModal.classList.remove("fadeIn");
+  aboutModal.classList.add("fadeOut");
+  setTimeout(() => {
+    aboutModal.style.display = "none";
+  }, 500);
+}
+
+function aboutOpenModal() {
+  aboutModal.classList.remove("fadeOut");
+  aboutModal.classList.add("fadeIn");
+  aboutModal.style.display = "flex";
+}
+
+for (let i = 0; i < aboutCloseButton.length; i++) {
+  const elements = aboutCloseButton[i];
+
+  elements.onclick = (e) => aboutModalClose();
+
+  aboutModal.style.display = "none";
+
+  window.onclick = function (event) {
+    if (event.target == aboutModal) aboutModalClose();
+  };
+}
+
+const aboutBtn = document.getElementById('about');
+
+aboutBtn.addEventListener('click', aboutOpenModal);

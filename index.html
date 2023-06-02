@@ -21,6 +21,44 @@
 
 <body class="bg-slate-900">
 
+    <!-- About modal -->
+    <div class="about-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
+        style="background: rgba(0,0,0,.7);">
+        <div class="border shadow-lg modal-container bg-white w-11/12 max-w-md mx-auto rounded-lg z-50 overflow-y-auto">
+            <div class="modal-content text-left">
+                <!--Title-->
+                <div class="flex justify-start items-center p-4">
+                    <div class="flex items-center justify-center bg-slate-200 w-10 h-10 p-2 rounded-full">
+                        <i class="fa-solid fa-circle-info text-slate-500 text-2xl"></i>
+                    </div>
+                    <p class="text-lg font-semibold ml-2 text-slate-500">About</p>
+                </div>
+                <!--Body-->
+                <div class="flex flex-col justify-center items-start p-10">
+                    <a class="text-slate-500 text-lg" href="https://www.meteosource.com/" target="_blank"
+                        rel="noopener noreferrer">API weather data provided by:
+                        <strong class="text-indigo-500 hover:text-indigo-800">https://www.meteosource.com/</strong></a>
+                        <span class="text-slate-500 mt-4">Icons designed by <strong><a class="text-indigo-500 hover:text-indigo-800"
+                            href="https://www.instagram.com/ruudeawakening/">Nick Leigh</a></strong></span>
+                            <span class="text-slate-500 mt-4">App designed by <strong>Marc Norris</strong></span>
+            <a class="text-indigo-500 hover:text-indigo-800 text-xl mb-4" href="https://github.com/shaky411" target="_blank"
+                rel="noopener noreferrer"><i class="fa-brands fa-github-alt mr-2"></i>Follow me on Github</a>
+            <span class="text-slate-400 mt-4">v1.2.2</span>
+            <h2 class="text-slate-400 mb-4">Powered by <i class="text-xl fa-brands fa-square-js mb-1"></i></h2>
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button"
+            data-slug="7kqkk5rvsfv" data-color="#FFDD00" data-emoji="🍺" data-font="Cookie" data-text="Buy me a beer"
+            data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script>
+                </div>
+                <!--Footer-->
+                <div class="bg-slate-100 flex justify-end p-4">
+                    
+                    <button
+                        class="focus:outline-none about-modal-close px-4 bg-slate-300 py-1 rounded-md text-slate-800 hover:bg-slate-800 hover:text-slate-200 duration-500">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
         style="background: rgba(0,0,0,.7);">
         <div class="border shadow-lg modal-container bg-white w-11/12 max-w-md mx-auto rounded-lg z-50 overflow-y-auto">
@@ -182,7 +220,7 @@
 
         <p id="tagline" class="text-slate-400 text-center md:text-2xl">Weekly weather summary without the clutter</p>
 
-        <h3 class="text-3xl text-slate-100" id="titleTemp">
+        <h3 class="text-5xl text-slate-100 font-bebas" id="titleTemp">
             <!-- Temp goes here -->
         </h3>
 
@@ -243,10 +281,8 @@
             </div>
         </div>
 
-        <div class="mt-6 text-slate-600 flex flex-col justify-center items-center">
-            <a href="about.html"
-                class="block w-full text-center border border-slate-500 py-2 px-4 bg-slate-700 hover:bg-slate-800 duration-300 rounded mt-4 text-white">About</a>
-        </div>
+        <button id="about"
+            class="mb-10 bg-slate-600 hover:bg-slate-800 duration-500 text-slate-300 m-5 py-2 px-4 rounded">About</button>
     </div>
 
     <script src="./drivers.js"></script>
@@ -256,6 +292,4 @@
 
 
 
-
-
-        <!-- * to run: npm run watch or to build once npm run build -->
+<!-- * to run: npm run watch or to build once npm run build -->
