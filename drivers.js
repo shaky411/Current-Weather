@@ -22,6 +22,7 @@ const tagline = document.getElementById("tagline");
 const high = document.getElementById("dayHigh");
 const low = document.getElementById("dayLow");
 const highLowContainer = document.getElementById("day-high-low");
+const wData = document.getElementById("test");
 
 const apiKEY = "6wqm0f4vkilufitxhwxlf06d8t39svnfbhbou4gm";
 
@@ -33,7 +34,6 @@ Object.defineProperty(String.prototype, "capitalize", {
 });
 
 function getUserLocation() {
-
   displayLoading();
 
   function locationSuccess(position) {
@@ -53,7 +53,7 @@ function getUserLocation() {
     console.log("error");
   }
   navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
-};
+}
 
 function app() {
   getUserLocation();
@@ -101,22 +101,68 @@ async function getLocationData(coords) {
   let localHigh = myHome.daily.data[0].all_day.temperature_max;
   let localLow = myHome.daily.data[0].all_day.temperature_min;
 
+  const localConditions = myHome.current.summary;
   let localIcon = myHome.current.icon_num;
-  let currentIconSource =
-      "./assets/weather-icons-big/" + localIcon + ".png";
-    titleIcon.innerHTML = `<img src="${currentIconSource}" alt="weather icon"</img>`;
-  
+  let currentIconSource = "./assets/weather-icons-big/" + localIcon + ".png";
+  titleIcon.innerHTML = `<img src="${currentIconSource}" alt="weather icon"</img>`;
+
+  wData.innerHTML = `Current conditions: <strong>${localConditions}</strong>`;
   // High-Low temperature for the current day
   high.innerHTML = `H:<strong>${localHigh}℃</strong>`;
   low.innerHTML = `L:<strong>${localLow}℃</strong>`;
 
-  titleTemp.innerHTML = `${myHome.current.temperature}℃`;  
+  titleTemp.innerHTML = `${myHome.current.temperature}℃`;
   title.innerHTML = locationId;
   wind.innerHTML = `${myHome.current.wind.speed} mph`;
   direction.innerHTML = `${myHome.current.wind.dir}`;
   rain.innerHTML = `${myHome.current.precipitation.type}`;
   temp.innerHTML = `${myHome.current.temperature}℃`;
   // titleTemp.innerHTML = `${temperature}℃`;
+
+  const localDaily = myHome.daily.data;
+  console.log(myHome.daily.data);
+
+  let localDailyCards = "";
+
+  localDaily.forEach((element) => {
+    let data = element;
+    // console.log(data)
+    // console.log(data.all_day);
+
+    // Get the icon code and add it to the src string from the image assets
+    let icon = data.icon;
+    let iconSource = "./assets/weather-icons/" + icon + ".png";
+
+    // re-format day data
+    let options = { weekday: "long", month: "long", day: "numeric" };
+    let today = new Date(data.day);
+    let correctData = today.toLocaleString("en-us", options);
+    console.log(correctData);
+
+    localDailyCards += `<div class="daily-data">
+    <div class="card-date">
+    <h2 class="day">${correctData}</h2>
+    </div>
+    <div class="icon"><img src="${iconSource}" alt="weather icon"</img></div>
+    <span id="summary">${data.all_day.weather}</span>
+    <div class="temp-data">
+    <i class="fa-solid fa-temperature-low text-slate-300"></i><span id="min-temp">Min Temp: <strong>${data.all_day.temperature_min}</strong>℃</span>
+    <span id="max-temp">Max Temp: <strong>${data.all_day.temperature_max}</strong>℃</span>
+    </div>
+    <div class="card-wind">
+    <i class="fa-solid fa-wind mt-2"></i>
+    <span><strong>${data.all_day.wind.speed}</strong>mph</span>
+    </div>
+    <div>
+    <i class="fa-solid fa-umbrella"></i>
+    <span><strong>${data.all_day.precipitation.type}</strong></span>
+    </div>
+    </div>
+    `;
+  });
+
+  dailyData.innerHTML = localDailyCards;
+
 }
 
 async function fetchData() {
@@ -205,8 +251,6 @@ async function fetchData() {
     const temperature = data.current.temperature;
 
     console.log(data.current);
-
-    const wData = document.getElementById("test");
 
     wind.innerHTML = `${data.current.wind.speed} mph`;
     direction.innerHTML = `${data.current.wind.dir}`;
