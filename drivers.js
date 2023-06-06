@@ -59,7 +59,7 @@ function app() {
   getUserLocation();
 }
 
-// window.onload = app();
+window.onload = app();
 
 const homeLocation = document.getElementById("home");
 
@@ -92,6 +92,7 @@ async function getLocationData(coords) {
   );
 
   hideLoading();
+  mainLogo.classList.add("hidden");
 
   const newResponse = await locationResponse.json();
   let myHome = newResponse;
@@ -99,6 +100,11 @@ async function getLocationData(coords) {
   console.log(myHome);
   let localHigh = myHome.daily.data[0].all_day.temperature_max;
   let localLow = myHome.daily.data[0].all_day.temperature_min;
+
+  let localIcon = myHome.current.icon_num;
+  let currentIconSource =
+      "./assets/weather-icons-big/" + localIcon + ".png";
+    titleIcon.innerHTML = `<img src="${currentIconSource}" alt="weather icon"</img>`;
   
   // High-Low temperature for the current day
   high.innerHTML = `H:<strong>${localHigh}℃</strong>`;
