@@ -32,69 +32,86 @@ Object.defineProperty(String.prototype, "capitalize", {
   enumerable: false,
 });
 
-// function getUserLocation() {
+function getUserLocation() {
 
-//   function locationSuccess(position) {
-//     console.log("success");
-//     let coords = position.coords;
-//     getLocationData(coords);
-//   }
+  displayLoading();
 
-//   function locationError() {
-//     console.log("error")
-//   }
-//   navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
-// }
+  function locationSuccess(position) {
+    console.log("success");
+    let coords = position.coords;
+    console.log(coords);
 
-// function getLocationData(coords) {
+    getLocationData(coords);
+    itemContainer.classList.remove("hidden");
+    subTit.classList.remove("hidden");
+    highLowContainer.classList.remove("hidden");
+    pageTitle.classList.add("hidden");
+    tagline.classList.add("hidden");
+  }
 
-//   var URL = 'http://example.com/?lat=' + coords.latitude + '&long=' + coords.longitude;
-//   console.log(URL);
-//   console.log(coords.latitude)
-//   console.log(coords.longitude)
-// }
+  function locationError() {
+    console.log("error");
+  }
+  navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
+};
 
-// function app() {
-//   displayLoading();
-//   getUserLocation();
-// }
+function app() {
+  getUserLocation();
+}
 
 // window.onload = app();
 
+const homeLocation = document.getElementById("home");
+
+function getLocation() {
+  displayLoading();
+  getUserLocation();
+  getLocationData();
+  itemContainer.classList.remove("hidden");
+  subTit.classList.remove("hidden");
+  highLowContainer.classList.remove("hidden");
+  pageTitle.classList.add("hidden");
+  tagline.classList.add("hidden");
+}
+
+homeLocation.addEventListener("click", getUserLocation);
+
 // // data on load by location
-// async function getLocationData(coords) {
+async function getLocationData(coords) {
+  const response = await fetch(
+    `https://www.meteosource.com/api/v1/free/nearest_place?lat=${coords.latitude}&lon=${coords.longitude}&key=${apiKEY}`
+  );
 
-//   const response = await fetch(
-//     `https://www.meteosource.com/api/v1/free/nearest_place?lat=${coords.latitude}&lon=${coords.longitude}&key=${apiKEY}`
-//   );
+  const data = await response.json();
+  let locationId = data.place_id;
+  console.log(locationId);
 
-//   const location = await response.json();
-//   let locationId = location.place_id;
-//   console.log(locationId);
+  // This gets the current weather for the users location
+  const locationResponse = await fetch(
+    `https://www.meteosource.com/api/v1/free/point?place_id=${locationId}&sections=all%2C%20daily&language=en&units=metric&key=${apiKEY}`
+  );
 
-//   const locationResponse = await fetch(
-//     `https://www.meteosource.com/api/v1/free/point?place_id=${locationId}&sections=all%2C%20daily&language=en&units=metric&key=${apiKEY}`
-//   )
+  hideLoading();
 
-//   const localeData = locationResponse.json();
-//   hideLoading();
-//   mainLogo.classList.add("hidden");
-//   const allLocaleData = localeData;
-//   const eachDay = allLocaleData;
-//   console.log(eachDay)
+  const newResponse = await locationResponse.json();
+  let myHome = newResponse;
 
-// wind.innerHTML = `${data.current.wind.speed} mph`;
-// direction.innerHTML = `${data.current.wind.dir}`;
-// rain.innerHTML = `${data.current.precipitation.type}`;
-// temp.innerHTML = `${temperature}℃`;
-// titleTemp.innerHTML = `${temperature}℃`;
-// High-Low temperature for the current day
-// high.innerHTML = `H:<strong>${daily[0].all_day.temperature_max}℃</strong>`;
-// low.innerHTML = `L:<strong>${daily[0].all_day.temperature_min}℃</strong>`;
+  console.log(myHome);
+  let localHigh = myHome.daily.data[0].all_day.temperature_max;
+  let localLow = myHome.daily.data[0].all_day.temperature_min;
+  
+  // High-Low temperature for the current day
+  high.innerHTML = `H:<strong>${localHigh}℃</strong>`;
+  low.innerHTML = `L:<strong>${localLow}℃</strong>`;
 
-// }
-
-// getLocationData()
+  titleTemp.innerHTML = `${myHome.current.temperature}℃`;  
+  title.innerHTML = locationId;
+  wind.innerHTML = `${myHome.current.wind.speed} mph`;
+  direction.innerHTML = `${myHome.current.wind.dir}`;
+  rain.innerHTML = `${myHome.current.precipitation.type}`;
+  temp.innerHTML = `${myHome.current.temperature}℃`;
+  // titleTemp.innerHTML = `${temperature}℃`;
+}
 
 async function fetchData() {
   try {
@@ -109,47 +126,47 @@ async function fetchData() {
 
     const placeData = await response.json();
     let placeId = placeData[0].place_id;
-  
+
     // use place id to search for city
-  const placeResponse = await fetch(
-    `https://www.meteosource.com/api/v1/free/point?place_id=${placeId}&sections=all%2C%20daily&language=en&units=metric&key=${apiKEY}`
-  );
+    const placeResponse = await fetch(
+      `https://www.meteosource.com/api/v1/free/point?place_id=${placeId}&sections=all%2C%20daily&language=en&units=metric&key=${apiKEY}`
+    );
 
-  const data = await placeResponse.json();
-  hideLoading();
-  mainLogo.classList.add("hidden");
+    const data = await placeResponse.json();
+    hideLoading();
+    mainLogo.classList.add("hidden");
 
-  // Handle the data returned from the API
-  const allData = data;
-  console.log(allData);
-  const daily = allData.daily.data;
-  console.log(daily);
+    // Handle the data returned from the API
+    const allData = data;
+    console.log(allData);
+    const daily = allData.daily.data;
+    console.log(daily);
 
-  // Rest of the code...
-  let dailyCards = "";
-  let dailyModal = "";
+    // Rest of the code...
+    let dailyCards = "";
+    let dailyModal = "";
 
-  // High-Low temperature for the current day
-  high.innerHTML = `H:<strong>${daily[0].all_day.temperature_max}℃</strong>`;
-  low.innerHTML = `L:<strong>${daily[0].all_day.temperature_min}℃</strong>`;
+    // High-Low temperature for the current day
+    high.innerHTML = `H:<strong>${daily[0].all_day.temperature_max}℃</strong>`;
+    low.innerHTML = `L:<strong>${daily[0].all_day.temperature_min}℃</strong>`;
 
-  // 7 day summary - get the data for each day
-  daily.forEach((element) => {
-    let data = element;
-    // console.log(data)
-    // console.log(data.all_day);
+    // 7 day summary - get the data for each day
+    daily.forEach((element) => {
+      let data = element;
+      // console.log(data)
+      // console.log(data.all_day);
 
-    // Get the icon code and add it to the src string from the image assets
-    let icon = data.icon;
-    let iconSource = "./assets/weather-icons/" + icon + ".png";
+      // Get the icon code and add it to the src string from the image assets
+      let icon = data.icon;
+      let iconSource = "./assets/weather-icons/" + icon + ".png";
 
-    // re-format day data
-    let options = { weekday: "long", month: "long", day: "numeric" };
-    let today = new Date(data.day);
-    let correctData = today.toLocaleString("en-us", options);
-    console.log(correctData);
+      // re-format day data
+      let options = { weekday: "long", month: "long", day: "numeric" };
+      let today = new Date(data.day);
+      let correctData = today.toLocaleString("en-us", options);
+      console.log(correctData);
 
-    dailyCards += `<div class="daily-data">
+      dailyCards += `<div class="daily-data">
       <div class="card-date">
       <h2 class="day">${correctData}</h2>
       </div>
@@ -169,40 +186,38 @@ async function fetchData() {
       </div>
       </div>
       `;
-  });
+    });
 
-  let currentIcon = data.current.icon_num;
-  let currentIconSource = "./assets/weather-icons-big/" + currentIcon + ".png";
-  titleIcon.innerHTML = `<img src="${currentIconSource}" alt="weather icon"</img>`;
+    let currentIcon = data.current.icon_num;
+    let currentIconSource =
+      "./assets/weather-icons-big/" + currentIcon + ".png";
+    titleIcon.innerHTML = `<img src="${currentIconSource}" alt="weather icon"</img>`;
 
-  dailyData.innerHTML = dailyCards;
+    dailyData.innerHTML = dailyCards;
 
-  const conditions = data.current.summary;
-  const temperature = data.current.temperature;
+    const conditions = data.current.summary;
+    const temperature = data.current.temperature;
 
-  console.log(data.current);
+    console.log(data.current);
 
-  const wData = document.getElementById("test");
+    const wData = document.getElementById("test");
 
-  wind.innerHTML = `${data.current.wind.speed} mph`;
-  direction.innerHTML = `${data.current.wind.dir}`;
-  rain.innerHTML = `${data.current.precipitation.type}`;
-  temp.innerHTML = `${temperature}℃`;
-  titleTemp.innerHTML = `${temperature}℃`;
+    wind.innerHTML = `${data.current.wind.speed} mph`;
+    direction.innerHTML = `${data.current.wind.dir}`;
+    rain.innerHTML = `${data.current.precipitation.type}`;
+    temp.innerHTML = `${temperature}℃`;
+    titleTemp.innerHTML = `${temperature}℃`;
 
-  title.innerHTML = cityInput.value.capitalize();
-  wData.innerHTML = `Current conditions: <strong>${conditions}</strong>`;
+    title.innerHTML = cityInput.value.capitalize();
+    wData.innerHTML = `Current conditions: <strong>${conditions}</strong>`;
 
-  cityInput.value = "";
-
-} catch (error) {
-  console.error("Error fetching data:", error);
-  alert("Error! Please check name and try again.");
-  // You can handle the error here, e.g., display an error message to the user.
+    cityInput.value = "";
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    alert("Error! Please check name and try again.");
+    // You can handle the error here, e.g., display an error message to the user.
+  }
 }
-
-}
-
 
 // Validate input, start loader and fetch data
 function validateInput() {
@@ -228,7 +243,7 @@ function displayLoading() {
 
   setTimeout(() => {
     loader.classList.remove("display");
-  }, 7000);
+  }, 15000);
 }
 
 // Hide the loading spinner
