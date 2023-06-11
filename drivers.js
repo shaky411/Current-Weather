@@ -59,7 +59,7 @@ function app() {
   getUserLocation();
 }
 
-window.onload = app();
+// window.onload = app();
 
 const homeLocation = document.getElementById("home");
 
